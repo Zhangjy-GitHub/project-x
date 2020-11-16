@@ -27,8 +27,7 @@ if __name__ == '__main__':
     service_budget_column = 'AB'
     service_price_1_column = 'V'
     service_price_2_column = 'X'
-    service_amount_1_column = 'AC'
-    service_amount_2_column = 'AD'
+    service_amount_1_column = 'Z'
     project_area_column = 'AL'
     project_end_column = 'GE'
 
@@ -77,7 +76,6 @@ if __name__ == '__main__':
             generate_apply_form(project_id=project_id, project_name=project_name, company=service_company,
                                 year=str(year), apply_info=apply_info)
         service_amount_1 = data_sheet[service_amount_1_column + str(r)].value
-        service_amount_2 = data_sheet[service_amount_2_column + str(r)].value
         budget_list = []
         task_list = []
         confirm_list = []
@@ -90,15 +88,6 @@ if __name__ == '__main__':
             task_list.append((service_content_1, str(service_amount_1) + unit_type, service_content_1))
             confirm_list.append(
                 (str(service_amount_1) + unit_type, str(service_price_1), str(total), service_content_1))
-            total_budget = total_budget + total
-        if service_amount_2 != 0 and service_amount_2 is not None:
-            service_price_2 = data_sheet[service_price_2_column + str(r)].value
-            service_content_2 = data_sheet[service_content_2_column + str(r)].value
-            total = service_price_2 * service_amount_2
-            budget_list.append((service_content_2, str(service_amount_2) + unit_type, str(service_price_2), str(total)))
-            task_list.append((service_content_2, str(service_amount_2 + unit_type), service_content_2))
-            confirm_list.append(
-                (str(service_amount_2) + unit_type, str(service_price_2), str(total), service_content_2))
             total_budget = total_budget + total
         budget_info = {'budget_list': budget_list, 'total_budget': str(total_budget)}
         if need_all_files:
