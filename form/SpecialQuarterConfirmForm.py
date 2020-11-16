@@ -7,7 +7,7 @@ from form.Utils import save_special_company_form_file
 
 
 def generate_special_quarter_confirm_form(service_company: str, year: str, quarter: str, confirm_info: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\5 协作工作确认单-special.docx')
+    doc = Document('./template-forms/5 协作工作确认单-special.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
 

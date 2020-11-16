@@ -7,7 +7,7 @@ from form.Utils import save_company_form_file
 
 
 def generate_pay_info_form(company: str, year: str, pay_info: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\6 协作工作结算单.docx')
+    doc = Document('./template-forms/6 协作工作结算单.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
     # 协作商 (0, 1) 

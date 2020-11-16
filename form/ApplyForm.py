@@ -6,7 +6,7 @@ from form.Utils import save_project_form_file
 
 
 def generate_apply_form(project_id: str, project_name: str, company: str, year: str, apply_info: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\2 技术协作申请表.docx')
+    doc = Document('./template-forms/2 技术协作申请表.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
 

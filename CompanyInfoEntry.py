@@ -3,7 +3,7 @@ import openpyxl
 from form.CompanyInfoForm import generate_company_info_form
 
 if __name__ == '__main__':
-    data_book = openpyxl.load_workbook('C:\\Users\\zhang\\Documents\\Tools\\data\\companies.xlsx', data_only=True)
+    data_book = openpyxl.load_workbook('./data/companies.xlsx', data_only=True)
     data_sheet = data_book.active
 
     name_column = 'A'

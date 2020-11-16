@@ -8,7 +8,7 @@ from form.Utils import save_company_form_file
 def generate_year_confirm_form(service_company: str, year: str, confirm_info: dict):
     if year == '2020':
         return
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\5 协作工作确认单.docx')
+    doc = Document('./template-forms/5 协作工作确认单.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
 

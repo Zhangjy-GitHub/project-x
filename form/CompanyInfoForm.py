@@ -6,7 +6,7 @@ from form.Utils import save_company_form_file
 
 
 def generate_company_info_form(companies_info: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\1 供应商情况.docx')
+    doc = Document('./template-forms/1 供应商情况.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
     p = doc.paragraphs[2]

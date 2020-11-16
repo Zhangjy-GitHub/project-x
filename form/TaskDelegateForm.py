@@ -6,7 +6,7 @@ from form.Utils import save_project_form_file
 
 
 def generate_task_delegate_form(project_id: str, project_name: str, company: str, year: str, task_infos: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\4 协作工作委派单.docx')
+    doc = Document('./template-forms/4 协作工作委派单.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
     # 2 协作商：  3 协作项目:  4 项目执行时间：年 月 —— 年 月  5 项目地点： 7 委托方项目经理： 8  委托方联系人：  联系电话：

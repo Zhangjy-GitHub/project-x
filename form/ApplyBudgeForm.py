@@ -6,7 +6,7 @@ from form.Utils import save_project_form_file
 
 
 def generate_apply_budget_form(project_id: str, project_name: str, company: str, year: str, budget_info: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\3 协作成本预算表.docx')
+    doc = Document('./template-forms/3 协作成本预算表.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
     project_paragraph = doc.paragraphs[1]

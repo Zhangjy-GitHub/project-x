@@ -4,7 +4,7 @@ import os
 
 
 def generate_contract(contract_info: dict):
-    doc = Document('C:\\Users\\zhang\\Documents\\Tools\\template-forms\\技术服务合同.docx')
+    doc = Document('./template-forms/技术服务合同.docx')
     # 替换
     config_info = {24: 'company_name', 25: 'company_area', 26: 'legal_person', 29: 'comm_address',
                    33: 'contract_area', 111: 'company_name'}

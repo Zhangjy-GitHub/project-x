@@ -3,7 +3,7 @@ import openpyxl
 from form.PayInfoForm import generate_pay_info_form
 
 if __name__ == '__main__':
-    data_book = openpyxl.load_workbook('C:\\Users\\zhang\\Documents\\Tools\\data\\payinfos.xlsx', data_only=True)
+    data_book = openpyxl.load_workbook('./data/payinfos.xlsx', data_only=True)
     data_sheet = data_book.active
 
     pay_service_company_column = 'A'

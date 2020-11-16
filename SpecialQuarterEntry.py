@@ -13,7 +13,7 @@ def add_quarter_data(quarter: str, service: str, confirm_infos: dict):
 
 if __name__ == '__main__':
     data_book = openpyxl.load_workbook(
-        'C:\\Users\\zhang\\Documents\\Tools\\data\\special_projects.xlsx', data_only=True)
+        './data/special_projects.xlsx', data_only=True)
     data_sheet = data_book.active
 
     year_column = 'A'

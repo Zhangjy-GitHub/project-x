@@ -11,7 +11,7 @@ from form.TaskDelegateForm import generate_task_delegate_form
 if __name__ == '__main__':
 
     data_book = openpyxl.load_workbook(
-        'C:\\Users\\zhang\\Documents\\Tools\\data\\projects.xlsx', data_only=True)
+        './data/projects.xlsx', data_only=True)
     data_sheet = data_book.active
 
     year_column = 'A'

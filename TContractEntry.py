@@ -2,7 +2,7 @@ import openpyxl
 from form.TContract import generate_contract
 
 if __name__ == '__main__':
-    data_book = openpyxl.load_workbook('C:\\Users\\zhang\\Documents\\Tools\\data\\contracts.xlsx',
+    data_book = openpyxl.load_workbook('./data/contracts.xlsx',
                                        data_only=True)
     data_sheet = data_book.active
 
