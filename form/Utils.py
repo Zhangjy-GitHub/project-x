@@ -27,8 +27,8 @@ def save_company_form_file(company: str, year: str, form_name: str, doc: Documen
 
 
 def save_special_company_form_file(company: str, year: str, form_name: str, doc: Document):
-    if not os.path.exists('../生成表格/'):
-        os.mkdir('../生成表格/')
+    if not os.path.exists('./生成表格/'):
+        os.mkdir('./生成表格/')
     if not os.path.exists('./生成表格/special'):
         os.mkdir('./生成表格/special')
     if not os.path.exists('./生成表格/special/' + company):
@@ -38,7 +38,7 @@ def save_special_company_form_file(company: str, year: str, form_name: str, doc:
     else:
         if not os.path.exists('./生成表格/special/' + company + '/' + year):
             os.mkdir('./生成表格/special/' + company + '/' + year)
-        doc.save('./生成表格/special//' + company + '/' + year + '/' + form_name + '.docx')
+        doc.save('./生成表格/special/' + company + '/' + year + '/' + form_name + '.docx')
 
 
 def save_company_exists_form_file(company: str, year: str, form_name: str, doc: Document):
