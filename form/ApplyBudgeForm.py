@@ -9,7 +9,12 @@ def generate_apply_budget_form(project_id: str, project_name: str, company: str,
     doc = Document('./template-forms/3 协作成本预算表.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
-    project_paragraph = doc.paragraphs[1]
+    company_paragraph = doc.paragraphs[1]
+    company_paragraph.clear()
+    run = company_paragraph.add_run('供应商名称：' + company)
+    run.font.size = Pt(12)
+
+    project_paragraph = doc.paragraphs[2]
     project_paragraph.clear()
     run = project_paragraph.add_run('项目号/项目名称：' + project_id + '/' + project_name)
     run.font.size = Pt(12)
