@@ -5,7 +5,8 @@ from docx.shared import Pt
 from form.Utils import save_project_form_file
 
 
-def generate_apply_budget_form(project_id: str, project_name: str, company: str, year: str, budget_info: dict):
+def generate_apply_budget_form(project_id: str, project_name: str, company: str, year: str,
+                               budget_info: dict):
     doc = Document('./template-forms/3 协作成本预算表.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
@@ -36,5 +37,6 @@ def generate_apply_budget_form(project_id: str, project_name: str, company: str,
         run = table.rows[r].cells[3].paragraphs[0].add_run(total)
         run.font.size = Pt(12)
         r = r + 1
-    save_project_form_file(company=company, year=year, project_id=project_id
-                           , project_name=project_name, form_name='3 协作成本预算表', doc=doc)
+    save_project_form_file(company=company, year=year,
+                           project_id=project_id, project_name=project_name,
+                           form_name='3 协作成本预算表', doc=doc)

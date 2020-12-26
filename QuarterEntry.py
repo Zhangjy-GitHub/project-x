@@ -55,10 +55,14 @@ if __name__ == '__main__':
         unit_type = data_sheet[unit_type_column + str(r)].value
         service_content_1 = data_sheet[service_content_1_column + str(r)].value
 
-        quarter_1_amount_1 = data_sheet[quarter_1_amount_1_column + str(r)].value
-        quarter_2_amount_1 = data_sheet[quarter_2_amount_1_column + str(r)].value
-        quarter_3_amount_1 = data_sheet[quarter_3_amount_1_column + str(r)].value
-        quarter_4_amount_1 = data_sheet[quarter_4_amount_1_column + str(r)].value
+        quarter_1_amount_1 = data_sheet[quarter_1_amount_1_column +
+                                        str(r)].value
+        quarter_2_amount_1 = data_sheet[quarter_2_amount_1_column +
+                                        str(r)].value
+        quarter_3_amount_1 = data_sheet[quarter_3_amount_1_column +
+                                        str(r)].value
+        quarter_4_amount_1 = data_sheet[quarter_4_amount_1_column +
+                                        str(r)].value
 
         quarter_1_total_1 = data_sheet[quarter_1_total_1_column + str(r)].value
         quarter_2_total_1 = data_sheet[quarter_2_total_1_column + str(r)].value
@@ -78,23 +82,31 @@ if __name__ == '__main__':
 
         if quarter_1_amount_1 != 0 and quarter_1_amount_1 is not None:
             add_quarter('1', project_key, confirm_info)
-            confirm_info['1'][project_key].append((str(quarter_1_amount_1) + unit_type,
-                                                   str(service_price_1), quarter_1_total_1, service_content_1))
+            confirm_info['1'][project_key]\
+                .append((str(quarter_1_amount_1) + unit_type,
+                        str(service_price_1), quarter_1_total_1,
+                        service_content_1))
 
         if quarter_2_amount_1 != 0 and quarter_2_amount_1 is not None:
             add_quarter('2', project_key, confirm_info)
-            confirm_info['2'][project_key].append((str(quarter_2_amount_1) + unit_type,
-                                                   str(service_price_1), quarter_2_total_1, service_content_1))
+            confirm_info['2'][project_key]\
+                .append((str(quarter_2_amount_1) + unit_type,
+                        str(service_price_1), quarter_2_total_1,
+                        service_content_1))
 
         if quarter_3_amount_1 != 0 and quarter_3_amount_1 is not None:
             add_quarter('3', project_key, confirm_info)
-            confirm_info['3'][project_key].append((str(quarter_3_amount_1) + unit_type,
-                                                   str(service_price_1), quarter_3_total_1, service_content_1))
+            confirm_info['3'][project_key]\
+                .append((str(quarter_3_amount_1) + unit_type,
+                         str(service_price_1), quarter_3_total_1,
+                         service_content_1))
 
         if quarter_4_amount_1 != 0 and quarter_4_amount_1 is not None:
             add_quarter('4', project_key, confirm_info)
-            confirm_info['4'][project_key].append((str(quarter_4_amount_1) + unit_type,
-                                                   str(service_price_1), quarter_4_total_1, service_content_1))
+            confirm_info['4'][project_key]\
+                .append((str(quarter_4_amount_1) + unit_type,
+                         str(service_price_1), quarter_4_total_1,
+                         service_content_1))
 
         start_year = time.time()
         # 年度确认
@@ -106,15 +118,19 @@ if __name__ == '__main__':
         if service_total_1 is not None and service_total_1 != 0:
             if project_key not in company_year_info:
                 company_year_info[project_key] = []
-            company_year_info[project_key].append((str(service_amount_1) + unit_type,
-                                                   str(service_price_1), service_total_1, service_content_1))
+            company_year_info[project_key]\
+                .append((str(service_amount_1) + unit_type,
+                         str(service_price_1), service_total_1,
+                         service_content_1))
         print('读取时间: ' + str(start_quarter - start) + ' 季度处理时间: ' +
-              str(start_year - start_quarter) + ' 年度处理时间: ' + str(time.time() - start_year))
+              str(start_year - start_quarter) +
+              ' 年度处理时间: ' + str(time.time() - start_year))
 
     for (c, company_info) in company_quarter_confirm.items():
         company_year = c.split('+', 1)
         for (q, project_info) in company_info.items():
-            generate_quarter_confirm_form(company_year[0], company_year[1], q, project_info)
+            generate_quarter_confirm_form(
+                company_year[0], company_year[1], q, project_info)
 
     """for (c, company_info) in company_year_confirm.items():
         for (y, project_info) in company_info.items():

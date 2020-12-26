@@ -1,3 +1,4 @@
 .idea/
 venv/
 生成表格/
+.pyc

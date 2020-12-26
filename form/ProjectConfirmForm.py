@@ -6,12 +6,13 @@ from docx.enum.text import WD_LINE_SPACING
 from form.Utils import save_project_form_file
 
 
-def generate_project_confirm_form(project_id: str, project_name: str, company: str, year: str, confirm_info: dict):
+def generate_project_confirm_form(project_id: str, project_name: str,
+                                  company: str, year: str, confirm_info: dict):
     doc = Document('./template-forms/5 协作工作确认单.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
     table = doc.tables[0]
-    # 替换：(0, 1)协作商：  (1, 0)确认类型：□季度/□年度/+ u'\u2713' +单项目/□临时 
+    # 替换：(0, 1)协作商：  (1, 0)确认类型：□季度/□年度/+ u'\u2713' +单项目/□临时
     # 替换：(2, 0)协作区间：     年     月-    年     月
     # 行4 开始：序号 列0，项目名称 列1 工作量 列2 项目号 列3 备注 列4
     table.rows[0].cells[1].paragraphs[0].clear()
@@ -91,5 +92,6 @@ def generate_project_confirm_form(project_id: str, project_name: str, company: s
 
     p = table.rows[5].cells[4].add_paragraph('')
     p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
-    save_project_form_file(company=company, year=year, project_id=project_id, project_name=project_name \
-                           , form_name='5 协作工作确认单', doc=doc)
+    save_project_form_file(company=company, year=year, project_id=project_id,
+                           project_name=project_name,
+                           form_name='5 协作工作确认单', doc=doc)

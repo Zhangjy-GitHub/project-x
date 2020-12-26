@@ -6,13 +6,14 @@ from docx.enum.text import WD_LINE_SPACING
 from form.Utils import save_company_form_file
 
 
-def generate_quarter_confirm_form(service_company: str, year: str, quarter: str, confirm_info: dict):
+def generate_quarter_confirm_form(service_company: str, year: str,
+                                  quarter: str, confirm_info: dict):
     doc = Document('./template-forms/5 协作工作确认单.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
 
     table = doc.tables[0]
-    # 替换：(0, 1)协作商：  (1, 0)确认类型：□季度/□年度/+ u'\u2713' +单项目/□临时 
+    # 替换：(0, 1)协作商：  (1, 0)确认类型：□季度/□年度/+ u'\u2713' +单项目/□临时
     # 替换：(2, 0)协作区间：     年     月-    年     月
     # 行4 开始：序号 列0，项目名称 列1 工作量 列2 项目号 列3 备注 列4
     table.rows[0].cells[1].paragraphs[0].clear()
@@ -23,8 +24,8 @@ def generate_quarter_confirm_form(service_company: str, year: str, quarter: str,
     run.font.size = Pt(12)
     table.rows[2].cells[0].paragraphs[0].clear()
     quarter_month = {'1': ('1', '3'), '2': ('4', '6'), '3': ('7', '9'), '4': ('10', '12')}
-    service_time = year + '年' + quarter_month[quarter][0] + '月 —— ' + year + \
-                   '年' + quarter_month[quarter][1] + '月'
+    service_time = year + '年' + quarter_month[quarter][0] + \
+        '月 —— ' + year + '年' + quarter_month[quarter][1] + '月'
     run = table.rows[2].cells[0].paragraphs[0].add_run('协作区间：' + service_time)
     run.font.size = Pt(12)
 
@@ -103,6 +104,8 @@ def generate_quarter_confirm_form(service_company: str, year: str, quarter: str,
 
     p = table.rows[r].cells[4].add_paragraph('')
     p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
-    save_company_form_file(company=service_company, year=year, form_name='5 协作工作确认单_季度_' + quarter, doc=doc)
+    save_company_form_file(company=service_company, year=year,
+                           form_name='5 协作工作确认单_季度_' + quarter, doc=doc)
     # 公司名称文件夹存在则保存，否则不保存
-    #save_company_exists_form_file(company=service_company, year=year, form_name='5 协作工作确认单_季度_' + quarter, doc=doc)
+    # save_company_exists_form_file(company=service_company, year=year,
+    #                              form_name='5 协作工作确认单_季度_' + quarter, doc=doc)

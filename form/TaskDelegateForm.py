@@ -5,7 +5,8 @@ from docx.shared import Pt
 from form.Utils import save_project_form_file
 
 
-def generate_task_delegate_form(project_id: str, project_name: str, company: str, year: str, task_infos: dict):
+def generate_task_delegate_form(project_id: str, project_name: str, company: str,
+                                year: str, task_infos: dict):
     doc = Document('./template-forms/4 协作工作委派单.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
     doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')

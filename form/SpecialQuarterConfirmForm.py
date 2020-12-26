@@ -6,25 +6,30 @@ from docx.shared import Pt
 from form.Utils import save_special_company_form_file
 
 
-def generate_special_quarter_confirm_form(service_company: str, year: str, quarter: str, confirm_info: dict):
+def generate_special_quarter_confirm_form(service_company: str, year: str,
+                                          quarter: str, confirm_info: dict):
     doc = Document('./template-forms/5 协作工作确认单-special.docx')
     doc.styles['Normal'].font.name = u'仿宋_GB2312'
-    doc.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
+    doc.styles['Normal']._element.rPr.rFonts\
+        .set(qn('w:eastAsia'), u'仿宋_GB2312')
 
     table = doc.tables[0]
     # 替换：(0, 1)协作商：  (1, 0)确认类型：□季度/□年度/+ u'\u2713' +单项目/□临时
     # 替换：(2, 0)协作区间：     年     月-    年     月
     # 行4 开始：序号 列0，项目名称 列1 工作量 列2 项目号 列3 备注 列4
     table.rows[0].cells[1].paragraphs[0].clear()
-    run = table.rows[0].cells[1].paragraphs[0].add_run('协作商：' + service_company)
+    run = table.rows[0].cells[1] \
+               .paragraphs[0].add_run('协作商：' + service_company)
     run.font.size = Pt(12)
     table.rows[1].cells[0].paragraphs[0].clear()
-    run = table.rows[1].cells[0].paragraphs[0].add_run('确认类型：' + u'\u2713' + '季度/□年度/□单项目/□临时')
+    run = table.rows[1].cells[0].paragraphs[0].add_run('确认类型：' + u'\u2713' +
+                                                       '季度/□年度/□单项目/□临时')
     run.font.size = Pt(12)
     table.rows[2].cells[0].paragraphs[0].clear()
-    quarter_month = {'1': ('1', '3'), '2': ('4', '6'), '3': ('7', '9'), '4': ('10', '12')}
-    service_time = year + '年' + quarter_month[quarter][0] + '月 —— ' + year + \
-                   '年' + quarter_month[quarter][1] + '月'
+    quarter_month = {'1': ('1', '3'), '2': ('4', '6'), '3': ('7', '9'), 
+                     '4': ('10', '12')}
+    service_time = year + '年' + quarter_month[quarter][0] + '月 —— ' + year \
+                        + '年' + quarter_month[quarter][1] + '月'
     run = table.rows[2].cells[0].paragraphs[0].add_run('协作区间：' + service_time)
     run.font.size = Pt(12)
 
@@ -34,9 +39,11 @@ def generate_special_quarter_confirm_form(service_company: str, year: str, quart
             table.add_row()
         run = table.rows[r].cells[0].paragraphs[0].add_run(service_type)
         run.font.size = Pt(12)
-        run = table.rows[r].cells[1].paragraphs[0].add_run(str(confirm_detail[0]) + confirm_detail[2])
+        run = table.rows[r].cells[1].paragraphs[0] \
+                   .add_run(str(confirm_detail[0]) + confirm_detail[2])
         run.font.size = Pt(12)
-        run = table.rows[r].cells[2].paragraphs[0].add_run(str(confirm_detail[1]))
+        run = table.rows[r].cells[2].paragraphs[0] \
+                   .add_run(str(confirm_detail[1]))
         run.font.size = Pt(12)
         r += 1
 
@@ -92,6 +99,11 @@ def generate_special_quarter_confirm_form(service_company: str, year: str, quart
 
     p = table.rows[r].cells[1].add_paragraph('')
     p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
-    save_special_company_form_file(company=service_company, year=year, form_name='5 协作工作确认单_季度_' + quarter, doc=doc)
+    save_special_company_form_file(company=service_company,
+                                   year=year,
+                                   form_name='5 协作工作确认单_季度_' + quarter,
+                                   doc=doc)
     # 公司名称文件夹存在则保存，否则不保存
-    #save_company_exists_form_file(company=service_company, year=year, form_name='5 协作工作确认单_季度_' + quarter, doc=doc)
+    # save_company_exists_form_file(company=service_company, year=year,
+    #                               form_name='5 协作工作确认单_季度_' + quarter,
+    #                               doc=doc)

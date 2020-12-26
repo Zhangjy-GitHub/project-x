@@ -55,58 +55,83 @@ if __name__ == '__main__':
                 content = content + '□ ' + str(i) + '）' + sc + '\n'
             i = i + 1
         apply_info['service_type'] = content
-        service_budget = data_sheet[service_budget_column + str(r)].value / 10000
+        service_budget = data_sheet[service_budget_column +
+                                    str(r)].value / 10000
         if service_budget is None or fabs(service_budget) < 1e-6:
             continue
         need_all_files = True
-        if service_type == '专业技术支持类' or service_type == '项目文件评审类' and service_budget < service_budget_predicted:
+        if service_type == '专业技术支持类' or service_type == '项目文件评审类' \
+           and service_budget < service_budget_predicted:
             need_all_files = False
         apply_info['service_budget'] = str(service_budget)
         contract_time_delta = data_sheet[contract_time_column + str(r)].value
-        contract_time = datetime.date(1900, 1, 1) + datetime.timedelta(contract_time_delta)
+        contract_time = datetime.date(
+            1900, 1, 1) + datetime.timedelta(contract_time_delta)
 
         service_month = contract_time.month
         service_year = year
         if contract_time.year < year:
             service_month = 1
-        apply_info['apply_time'] = str(service_year) + '年' + str(service_month) + '月'
-        apply_info['service_time'] = str(service_year) + '年' + str(service_month) + '月' \
-                                     + ' —— ' + str(year) + '年' + '12月'
+        apply_info['apply_time'] = str(
+            service_year) + '年' + str(service_month) + '月'
+        apply_info['service_time'] = str(service_year) + '年' +\
+            str(service_month) + '月' + ' —— ' + str(year) + '年' + '12月'
         apply_info['apply_dep'] = '工程管理中心'
         if need_all_files:
-            generate_apply_form(project_id=project_id, project_name=project_name, company=service_company,
+            generate_apply_form(project_id=project_id,
+                                project_name=project_name,
+                                company=service_company,
                                 year=str(year), apply_info=apply_info)
         service_amount_1 = data_sheet[service_amount_1_column + str(r)].value
-        service_budget_amount_1 = data_sheet[service_budget_amount_1_column + str(r)].value
+        service_budget_amount_1 = \
+            data_sheet[service_budget_amount_1_column + str(r)].value
         budget_list = []
         task_list = []
         confirm_list = []
         total_budget = 0
         if service_amount_1 != 0 and service_amount_1 is not None:
             service_price_1 = data_sheet[service_price_1_column + str(r)].value
-            service_content_1 = data_sheet[service_content_1_column + str(r)].value
+            service_content_1 = data_sheet[service_content_1_column +
+                                           str(r)].value
             total = service_price_1 * service_amount_1
             budget = service_price_1 * service_budget_amount_1
-            budget_list.append((service_content_1, str(service_budget_amount_1) + unit_type, str(service_price_1), str(budget)))
-            task_list.append((service_content_1, str(service_budget_amount_1) + unit_type, service_content_1))
+            budget_list.append((service_content_1, str(
+                service_budget_amount_1) + unit_type, str(service_price_1),
+                str(budget)))
+            task_list.append((service_content_1, str(
+                service_budget_amount_1) + unit_type, service_content_1))
             confirm_list.append(
-                (str(service_amount_1) + unit_type, str(service_price_1), str(total), service_content_1))
+                (str(service_amount_1) + unit_type, str(service_price_1),
+                 str(total), service_content_1))
             total_budget = total_budget + budget
-        budget_info = {'budget_list': budget_list, 'total_budget': str(total_budget)}
+        budget_info = {'budget_list': budget_list,
+                       'total_budget': str(total_budget)}
         if need_all_files:
-            generate_apply_budget_form(project_id=project_id, project_name=project_name
-                                       , company=service_company, year=str(year), budget_info=budget_info)
+            generate_apply_budget_form(project_id=project_id,
+                                       project_name=project_name,
+                                       company=service_company,
+                                       year=str(year),
+                                       budget_info=budget_info)
         project_area = data_sheet[project_area_column + str(r)].value
-        task_info = {'service_company': service_company, 'service_time': apply_info['service_time'],
+        task_info = {'service_company': service_company,
+                     'service_time': apply_info['service_time'],
                      'service_area': project_area, 'task_list': task_list}
         if need_all_files:
-            generate_task_delegate_form(project_id=project_id, project_name=project_name
-                                        , company=service_company, year=str(year), task_infos=task_info)
+            generate_task_delegate_form(project_id=project_id,
+                                        project_name=project_name,
+                                        company=service_company,
+                                        year=str(year),
+                                        task_infos=task_info)
         project_end_month = data_sheet[project_end_column + str(r)].value
         if project_end_month is not None and project_end_month != 0:
-            confirm_time = str(service_year) + '年' + str(service_month) + '月 —— ' + str(year) + '年' + str(
+            confirm_time = str(service_year) + '年' + str(service_month) +\
+                '月 —— ' + str(year) + '年' + str(
                 project_end_month) + '月'
             confirm_info = {'service_company': service_company,
-                            'service_time': confirm_time, 'confirm_list': confirm_list}
-            generate_project_confirm_form(project_id=project_id, project_name=project_name
-                                          , company=service_company, year=str(year), confirm_info=confirm_info)
+                            'service_time': confirm_time,
+                            'confirm_list': confirm_list}
+            generate_project_confirm_form(project_id=project_id,
+                                          project_name=project_name,
+                                          company=service_company,
+                                          year=str(year),
+                                          confirm_info=confirm_info)

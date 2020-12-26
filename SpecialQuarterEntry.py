@@ -1,7 +1,8 @@
 import time
 
 import openpyxl
-from form.SpecialQuarterConfirmForm import generate_special_quarter_confirm_form
+from form.SpecialQuarterConfirmForm \
+    import generate_special_quarter_confirm_form
 
 
 def add_quarter_data(quarter: str, service: str, confirm_infos: dict):
@@ -55,10 +56,18 @@ if __name__ == '__main__':
         service_content_1 = data_sheet[service_content_1_column + str(r)].value
         service_type_1 = data_sheet[service_type_1_column + str(r)].value
 
-        quarter_1_amount_1 = data_sheet[quarter_1_amount_1_column + str(r)].value
-        quarter_2_amount_1 = data_sheet[quarter_2_amount_1_column + str(r)].value
-        quarter_3_amount_1 = data_sheet[quarter_3_amount_1_column + str(r)].value
-        quarter_4_amount_1 = data_sheet[quarter_4_amount_1_column + str(r)].value
+        quarter_1_amount_1 = data_sheet[
+            quarter_1_amount_1_column + str(r)
+        ].value
+        quarter_2_amount_1 = data_sheet[
+            quarter_2_amount_1_column + str(r)
+        ].value
+        quarter_3_amount_1 = data_sheet[
+            quarter_3_amount_1_column + str(r)
+        ].value
+        quarter_4_amount_1 = data_sheet[
+            quarter_4_amount_1_column + str(r)
+        ].value
 
         quarter_1_total_1 = data_sheet[quarter_1_total_1_column + str(r)].value
         quarter_2_total_1 = data_sheet[quarter_2_total_1_column + str(r)].value
@@ -104,5 +113,6 @@ if __name__ == '__main__':
         company_name = key.split('+', 1)[0]
         year = key.split('+', 1)[1]
         for (q, confirm) in company_quarter_confirm[key].items():
-            generate_special_quarter_confirm_form(company_name, year, q, confirm)
+            generate_special_quarter_confirm_form(company_name, year,
+                                                  q, confirm)
     pass
